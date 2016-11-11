@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "allowUnreachableCode": false,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "declaration": false,
+    "diagnostics": true,
+    "listFiles": false,
+    "pretty": true,
+    "lib": ["dom",  "es5",  "scripthost",  "es2015"],
+    //"traceResolution": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "watch": false,
+    "preserveConstEnums": true
+  },
+  "files": [
+    "typings/index.d.ts",
+    "src/cacheServer.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

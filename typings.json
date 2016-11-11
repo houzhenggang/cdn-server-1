@@ -1,0 +1,12 @@
+{
+  "globalDependencies": {
+    "bunyan": "registry:dt/bunyan#0.0.0+20161019135123",
+    "debug": "registry:dt/debug#0.0.0+20160317120654",
+    "form-data": "registry:dt/form-data#0.0.0+20160724024111",
+    "fs-extra": "registry:dt/fs-extra#0.0.0+20161004190449",
+    "iconv": "registry:dt/iconv#2.1.11+20160417151847",
+    "js-yaml": "registry:dt/js-yaml#3.5.2+20160316171810",
+    "node": "registry:dt/node#6.0.0+20161019125345",
+    "request": "registry:dt/request#0.0.0+20160726020908"
+  }
+}
