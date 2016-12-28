@@ -9,7 +9,7 @@
   },
   "pre-commit": [],
   "main": "dist/cache-server.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "GLGPL v3",
   "repository": {
     "type": "git",
