@@ -5,10 +5,9 @@ import * as http from 'http';
 import * as zlib from 'zlib';
 import * as bunyan from 'bunyan';
 const request = require('request');
-const iconv = require('iconv');
 const debug = require('debug')('cdn-server');
 
-class CacheServer {
+export class CacheServer {
 
     private httpServer: http.Server;
 
@@ -53,11 +52,13 @@ class CacheServer {
         response.setHeader('Access-Control-Allow-Origin', '*');
         response.setHeader('Access-Control-Request-Method', '*');
         response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+        debug('cdn-server URL, METHOD = ', request.method, request.url);
+
         if(typeof request.headers['access-control-request-headers'] !== 'undefined') {
             response.setHeader('Access-Control-Allow-Headers', request.headers['access-control-request-headers']);
         }
         if ( request.method === 'OPTION' || request.method === 'OPTIONS' ) {
-            debug('option call for ', request.url);
+            debug('OPTION call for ', request.url);
             debug(request.headers);
             //debug(request);
             //todo forward the option to destination
@@ -76,15 +77,13 @@ class CacheServer {
                 var headerKeys = Object.keys(headers);
                 response.setHeader('Access-Control-Expose-Headers', headerKeys.join(','));
                 response.writeHead(status, headers);
-                debug('ACTUALLY GOING TO SEND BACK headers = ', headers);
+                //debug('ACTUALLY GOING TO SEND BACK headers = ', headers);
                 response.end(content);
             });
         } catch(e) {
-            debug("Excpetion caught", e);
+            debug("Exception caught", e);
             response.writeHead(501, {});
             response.end(e.message);
         }
-
     }
 }
-export = CacheServer;

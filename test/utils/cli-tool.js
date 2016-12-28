@@ -5,7 +5,7 @@ const utils = require('./servers');
 const config = require('./config');
 const bunyan = require('bunyan');
 const net = require('net');
-const CacheServer = require('./../../dist/cache-server');
+const CacheServer = require('./../../dist/cache-server').CacheServer;
 
 let cacheServer;
 

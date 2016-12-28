@@ -16,7 +16,7 @@ export class RedisCache {
 
             RedisCache.cacheEngine = new CacheEngineCB(defaultDomain, instance);
             cb(null);
-        })
+        });
     }
 }
 
@@ -88,8 +88,8 @@ export class CacheServerRequest {
         parsedOriginalURL.search = null;
         this.originalURL = nodeurl.format(parsedOriginalURL);
 
-        debug('original headers = ', this.headers);
-        delete this.headers['ngreferer'];
+        //debug('original headers = ', this.headers);
+        //delete this.headers['ngreferer'];
     }
 
     getIt(cb: Function) {
@@ -162,13 +162,13 @@ export class CacheServerRequest {
 
     //convert to utf-8
     private decode(headers, body) {
-        debug('DECODE CALLED', headers, body.substr(0, 30));
+        //debug('DECODE CALLED', headers, body.substr(0, 30));
 
         const re = /charset=([^()<>@,;:\"/[\]?.=\s]*)/i;
 
         if(headers['content-type']) {
             const charset = re.test(headers['content-type']) ? re.exec(headers['content-type'])[1] : 'utf-8';
-            debug('charset detected: ', charset);
+            //debug('charset detected: ', charset);
             if(charset === 'utf-8') {
                 return body;
             }
@@ -181,9 +181,7 @@ export class CacheServerRequest {
 
     private requestURL(binary: boolean ,headers: Object, cb: Function) {
 
-        debug('CALLING REQUEST URL with headers!', headers);
-
-
+        //debug('CALLING REQUEST URL with headers!', headers);
 
         const newHeaders = {};
         newHeaders['origin'] = this.originalURL;
@@ -245,14 +243,14 @@ export class CacheServerRequest {
             headers: newHeaders
         }, (err: Error, response: http.IncomingMessage, body: string) => {
 
-            debug('INSIDE CALLBACK');
+            //debug('INSIDE CALLBACK');
 
             if(err) {
                 debug('Error caught in request callback', err);
                 return cb(err, null);
             }
 
-            debug('body received, body.length  = ', body.length);
+            //debug('body received, body.length  = ', body.length);
 
             /*try {
              body = this.decode(response.headers, body);
@@ -268,8 +266,8 @@ export class CacheServerRequest {
                 headers:  this.extractHeaders(response.headers)
             };
 
-            debug('RESPONSE HEADERS', dataResponse.headers);
-            debug('body length = ', body.length);
+            //debug('RESPONSE HEADERS', dataResponse.headers);
+            //debug('body length = ', body.length);
 
             cb(null, dataResponse);
         });
